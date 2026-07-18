@@ -1,0 +1,27 @@
+---
+- name: Install ClickHouse
+  hosts: clickhouse
+  roles:
+    - clickhouse
+
+- name: Install Vector
+  hosts: vector
+  roles:
+    - vector-role
+
+- name: Install LightHouse
+  hosts: lighthouse
+  pre_tasks:
+    - name: Ensure ClickHouse is reachable
+      ansible.builtin.wait_for:
+        host: "{{ clickhouse_host | default('127.0.0.1') }}"
+        port: "{{ clickhouse_tcp_port | default(9000) }}"
+        timeout: 30
+      when: lighthouse_require_clickhouse | default(true)
+  roles:
+    - lighthouse-role
+  post_tasks:
+    - name: Check LightHouse is serving
+      ansible.builtin.uri:
+        url: "http://{{ ansible_default_ipv4.address }}/"
+        status_code: 200
