@@ -4,7 +4,7 @@
 
 ### 1. requirements.yml
 
-Создан в директории со старой версией (roles-1/requirements.yml). Содержит ссылку на clickhouse-роль от AlexeySetevoi.
+Создан в директории со старой версией. Содержит ссылку на clickhouse-роль от AlexeySetevoi.
 
 ### 2. Установка clickhouse-роли
 
@@ -18,7 +18,7 @@ ansible-galaxy install -r requirements.yml
 ansible-galaxy role init vector-role
 ```
 
-Роль лежит в `roles-1/vector-role/`.
+Роль в репозитории vector-role.
 
 ### 4. Наполнение vector-role
 
@@ -46,7 +46,7 @@ ansible-galaxy role init vector-role
 ansible-galaxy role init lighthouse-role
 ```
 
-Роль в `roles-2/lighthouse-role/`. Отдельно от vector-role, как и просили - одна роль = один продукт.
+Роль в репозитории lighthouse-role. Отдельно от vector-role, как и просили - одна роль = один продукт.
 
 Задачи:
 
